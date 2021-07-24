@@ -3,8 +3,10 @@ package application;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Set;
@@ -121,13 +123,24 @@ public class Execution {
 		System.out.println("Conclusion");
 		System.out.println("Spam rate : " + spamRate);
 		System.out.println("Nonspam rate : " + nonSpamRate);
+		/*Nap noi dung email vua kiem tra vao Keyword-Collection*/
 		if(spamRate > nonSpamRate)
 		{
 			System.out.println("This is spam Email");
+			spamKeywordCollection.add(wordsFromContent);
 		}
 		else
 		{
 			System.out.println("This is non-spam Email");
+			nonspamKeywordCollection.add(wordsFromContent);
 		}
+		
+		
+		/* 6.Cap nhat du lieu moi cho file huan luyen*/
+		ObjectOutputStream out = new ObjectOutputStream(
+				new FileOutputStream(outcome));
+		out.writeObject(spamKeywordCollection);
+		out.writeObject(nonspamKeywordCollection);
+		out.close();
 	}
 }
