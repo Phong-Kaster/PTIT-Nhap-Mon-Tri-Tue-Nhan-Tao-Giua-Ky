@@ -1,4 +1,7 @@
 <h1 align="center">Email Classifier</h1>
+<p align="center">
+    <img height="150px" src="./logo.png" >
+</p>
 <h2 align="center">A simple classifier bases on Naive Bayes algorithm</h2>
 
 # [**Table Of Content**](#table-of-content)
