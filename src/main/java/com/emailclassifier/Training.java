@@ -50,7 +50,7 @@ public class Training {
     public static Set<String> seperateSentenceToWords(String sentence)
     {
         HashSet<String> collection = new HashSet<>();
-        StringTokenizer brokenSentence = new StringTokenizer(sentence," ,.!*\"\'()\n");
+        StringTokenizer brokenSentence = new StringTokenizer(sentence," ,.!*-•“\"\'()\n");
         while( brokenSentence.hasMoreTokens() )
         {
             collection.add(brokenSentence.nextToken());

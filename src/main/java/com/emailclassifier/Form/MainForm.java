@@ -35,7 +35,7 @@ public class MainForm extends javax.swing.JFrame {
     String dir = System.getProperty("user.dir");
     String dataSheetSpamPath = dir + "/database/spam/";
     String dataSheetNonSpamPath = dir + "/database/nonspam/";
-    String result_trainingPath = dir + "/database/result_training.dat";
+    String result_trainingPath = dir + "/database/TrainingResult.dat";
     String folder_test = dir + "/database/test/";
     String path_result_test = dir + "/database/";
     String test_result = dir + "/database/result_training.dat";
@@ -553,7 +553,7 @@ public class MainForm extends javax.swing.JFrame {
         
         File f2 = new File(result_trainingPath);
         if(f2.exists() && !f2.isDirectory()) { 
-            Execution.result_training = f2;
+            Execution.TrainingResult = f2;
         }else{
             JOptionPane.showMessageDialog(this, "Vui lòng nhập đường dẫn hợp lệ");
             return;

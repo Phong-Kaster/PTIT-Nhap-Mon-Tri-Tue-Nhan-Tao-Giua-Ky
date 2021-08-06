@@ -39,7 +39,7 @@ public class Execution {
       **********************************************************************/
     static ArrayList<Set<String>> spamKeywordCollection = new ArrayList<>();
     static ArrayList<Set<String>> nonspamKeywordCollection = new ArrayList<>();
-    public static File result_training; // đường dẫn file traing
+    public static File TrainingResult; // đường dẫn file traing
     public static File folder_test; // đường dân folder chứa email cần test
     public static File path_result_test; // đường dẫn lưu file kết quả
     public static Boolean stop = false; // trạng thái của tiến trình
@@ -64,7 +64,7 @@ public class Execution {
     public static boolean run(Console console) throws FileNotFoundException, IOException, ClassNotFoundException {
         stop = false;
         // 1. Nạp dữ liệu từ file traing đã train trước đó
-        ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(result_training));
+        ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(TrainingResult));
         spamKeywordCollection = (ArrayList<Set<String>>) inputStream.readObject();
         nonspamKeywordCollection = (ArrayList<Set<String>>) inputStream.readObject();
         inputStream.close();
@@ -73,36 +73,38 @@ public class Execution {
         File[] filenames = folder_test.listFiles((FileFilter) HiddenFileFilter.VISIBLE);
         for(File oneFile : filenames)
         {
+            // 2.1 lặp từng file và đọc nội dung file
             // nếu có trạng thái tạm ngừng thì thoát chương trình
             if(stop) return false;
-            // lặp từng file và đọc nội dung file
+            
+            // 2.2. Khai báo danh sách các từ có trong 1 mail hiện tại
             Set<String> wordsFromContent = extractContentFromEmail(oneFile);
-            // 3. Khai báo danh sách các từ có trong 1 mail hiện tại
             ArrayList<String> words = new ArrayList<>(wordsFromContent);
             
-            // 4.Khai bao Lớp NaiveBayes và tính toán các xác suất
+            // 2.3.Khai bao Lớp NaiveBayes và tính toán các xác suất
             NaiveBayes bayes = new NaiveBayes(spamKeywordCollection.size(), nonspamKeywordCollection.size());
             
-            // 5. tính xác xuất là từ spam - P(spam) . theo dữ liệu mẫu
+            // tính xác xuất đây là email spam - P(spam)
             bayes.calculateSpamRate();
-            // 6. tính xác xuất là từ nonespam - P(nonespam) . theo dữ liệu mẫu
+            // tính xác xuất đây là email nonspam - P(nonespam)
             bayes.calculateNonSpamRate(); 
             
             
             console.printOnConsole("\n" + formatter.format(new Date()));
             console.printOnConsole("\n\tWord\t\tSpam(%)\t\tNon-spam(%)\n");
-            //Duyet mang tu vung de tinh xac xuat
+            //2.4. Duyet mang tu vung de tinh xac xuat
+            
             for(String word: words)
             {
                 // nếu có trạng thái tạm ngừng thì thoát chương trình
                 if(stop) return false;
-                // tính tần suất của từ này xuất hiện trong tất cả các từ spam đã training. 
+                // 2.4.1 tính tần suất của từ này xuất hiện trong tất cả các từ spam đã training =  P(xi|spam)
                 double spamWordPercent = bayes.percentWordAppear(word, spamKeywordCollection);
                 
-                // tính tần suất của từ này xuất hiện trong tất cả các từ none spam đã training.
+                // 2.4.1 tính tần suất của từ này xuất hiện trong tất cả các từ none spam đã training =  P(xi|nonspam)
                 double nonspamWordPercent = bayes.percentWordAppear(word, nonspamKeywordCollection);
 
-                // Kiem tra 1 tu vung. Neu la khong bang tan suat hien tai -> cap nhat Rate len
+                // 2.4.2 Kiem tra 1 tu vung. Neu la khong bang tan suat hien tai -> cap nhat Rate len
                 if( spamWordPercent != bayes.getSpamPercent() || nonspamWordPercent != bayes.getNonspamPercent() )
                 {
                     String textSpamPercent = String.format("%.2f", spamWordPercent*100),
@@ -112,12 +114,11 @@ public class Execution {
                     
                     bayes.setSpamRate(bayes.getSpamRate() * (spamWordPercent));
                     bayes.setNonSpamRate(bayes.getNonSpamRate() * (nonspamWordPercent));
-                }else{
-                    console.printOnConsole(word + "Dasdsad");
                 }
+                // 2.4.3 quay lại bước 2.4.1 cho đến hết danh sách thoát ra bước 2.5
             }
             
-            /// 7.So sanh spamRate & nonSpamRate->Ket luan
+            /// 2.5. So sanh spamRate & nonSpamRate->Ket luan
             console.printOnConsole("\nConclusion");
             console.printOnConsole("\nSpam rate : " + bayes.getSpamRate());
             console.printOnConsole("\nNonspam rate : " +  bayes.getNonSpamRate());
@@ -129,7 +130,7 @@ public class Execution {
                     writeToResult(oneFile.getName() + " - This is spam Email\n");
                 }
                 if(isSaveData){
-                    // nhập nội dung mới vào file training
+                    // 2.6 nhập nội dung mới vào file training
                     spamKeywordCollection.add(wordsFromContent);
                 }
             }
@@ -140,17 +141,17 @@ public class Execution {
                     writeToResult(oneFile.getName() + " - This is non-spam Email\n");
                 }
                 if(isSaveData){
-                    // nhập nội dung mới vào file training
+                    // 2.6 nhập nội dung mới vào file training
                     nonspamKeywordCollection.add(wordsFromContent);
                 }
             }
             console.printOnConsole("\n--------------------------------------------\n");
-            // quay lại bước 3
+            // 2.7 quay lại bước 2.1 cho đến hết khi đó thoát ra bước 3
         }
 
         if(isSaveData){
-            // 8. Cap nhat du lieu moi cho file huan luyen
-            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(result_training));
+            // 3. Cap nhat du lieu moi cho file huan luyen
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(TrainingResult));
             out.writeObject(spamKeywordCollection);
             out.writeObject(nonspamKeywordCollection);
             out.close();
