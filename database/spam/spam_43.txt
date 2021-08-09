@@ -1,0 +1,9 @@
+9/ Xác minh điều kiện nhận giải thưởng
+- Trong vòng 2 ngày làm việc (thời hạn trao thưởng là 30 ngày) kể từ thời điểm khách hàng được rút thăm trúng thưởng, BTC chương trình sẽ liên hệ với khách hàng trúng thưởng để xác minh điều kiện nhận giải thưởng.
+- BTC sẽ gọi theo số điện thoại di động do khách hàng cung cấp. Trường hợp số điện thoại do khách hàng cung cấp không liên lạc được trong vòng 7 ngày kể từ thời điểm cuộc gọi đầu tiên (thời hạn trao thưởng là 30 ngày), giải thưởng sẽ vô hiệu lực và được xử lý theo qui định của Bộ Công Thương.
+- Sau khi liên lạc được với khách hàng, ban tổ chức chương trình sẽ hướng dẫn khách về thủ tục xác minh điều kiện nhận giải thưởng, như sau:
+Khách hàng sẽ gửi hồ sơ trúng thưởng gồm: (i) bản sao CMND có công chứng hoặc xác nhận của chính quyền địa phương, (ii) bản sao hóa đơn mua sản phẩm trúng thưởng, và (iii) bản sao phiếu bảo hành theo đường bưu điện về cho chương trình theo địa chỉ sau đây để ban tổ chức đối chiếu với các thông tin mà khách hàng đã nhập tại thời điểm tham gia rút thăm:
+
+Công ty TNHH Acer Việt Nam
+Địa chỉ: 60 Nguyễn Đình Chiểu, phường Đa Kao, quận 1, TPHCM
+Điện thoại: 08-39106888 - Người liên lạc: chị Lê Quỳnh Thụy Vân (bộ phận Marketing)

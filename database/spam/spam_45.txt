@@ -1,0 +1,8 @@
+
+6/ Cách thức đăng ký tham gia rút thăm
+
+Bước 1: Khách hàng tự truy cập vào website của chương trình tại địa chỉ http://dangky.acer.com.vn/newreg/ và điền các thông tin (bao gồm: Serial Number, Email)
+Bước 2: Khách hàng nhấn vào nút “Đăng ký bảo hành” và điền tiếp các thông tin (bao gồm: Email, Họ tên, Địa chỉ, Điện thoại, Di động, Tên đại lý, Số hóa đơn, Ngày mua).
+Bước 3: Hoàn tất Đăng ký bằng cách nhấn vào nút "Đăng ký bảo hành", khách hàng sẽ nhận được thông báo kích hoạt thành công tham dự chương trình rút thăm trúng thưởng.
+Thời gian bắt đầu đăng ký tham dự rút thăm là 0 giờ 0 phút 0 giây ngày 25/02/2014 căn cứ theo giờ trên hệ thống của chương trình.
+Thời hạn cuối đăng ký tham dự rút thăm là 23 giờ 59 phút 59 giây ngày 10/04/2014 căn cứ theo giờ trên hệ thống của chương trình.

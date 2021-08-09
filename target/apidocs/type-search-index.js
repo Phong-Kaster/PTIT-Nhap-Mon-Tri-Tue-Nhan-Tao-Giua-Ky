@@ -1,1 +1,0 @@
-typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"com.emailclassifier.Form","l":"Console"},{"p":"com.emailclassifier","l":"Execution"},{"p":"com.emailclassifier.Form","l":"MainForm"},{"p":"com.emailclassifier","l":"NaiveBayes"},{"p":"com.emailclassifier","l":"Training"}]
